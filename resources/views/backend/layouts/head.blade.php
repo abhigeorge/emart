@@ -11,6 +11,10 @@
 <link rel="stylesheet" href="{{ asset('backend/assets/vendor/font-awesome/css/font-awesome.min.css')}}">
 <link rel="stylesheet" href="{{ asset('backend/assets/vendor/jvectormap/jquery-jvectormap-2.0.3.min.css')}}" />
 <link rel="stylesheet" href="{{ asset('backend/assets/vendor/morrisjs/morris.min.css')}}" />
+<link rel="stylesheet" href="{{ asset('backend/assets/vendor/jquery-datatable/dataTables.bootstrap4.min.css')}}">
+<link rel="stylesheet" href="{{ asset('backend/assets/vendor/dropify/css/dropify.min.css')}}">
+<link rel="stylesheet" href="{{ asset('backend/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}">
+<link rel="stylesheet" href="{{ asset('backend/assets/vendor/summernote/dist/summernote.css')}}">
 
 <!-- MAIN CSS -->
 <link rel="stylesheet" href="{{ asset('backend/assets/css/main.css')}}">
