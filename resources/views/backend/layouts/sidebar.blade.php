@@ -60,18 +60,14 @@
                             <a href="#App" class="has-arrow"><i class="icon-picture"></i> <span>Banner Management</span></a>
                             <ul>
                                 <li><a href="{{route('banner.index')}}">All Banners</a></li>
-                                <li><a href="{{route('banner.create')}}">Add Banner</a></li>
+                                <li><a href="{{route('banner.create')}}">Add New Banner</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="#App" class="has-arrow"><i class="icon-list"></i> <span>Catagory Management</span></a>
                             <ul>
-                                <li><a href="app-inbox.html">Inbox</a></li>
-                                <li><a href="app-chat.html">Chat</a></li>
-                                <li><a href="app-calendar.html">Calendar</a></li>
-                                <li><a href="app-contact.html">Contact list</a></li>
-                                <li><a href="app-contact-grid.html">Contact Card <span class="badge badge-warning float-right">New</span></a></li>
-                                <li><a href="app-taskboard.html">Taskboard</a></li>
+                                <li><a href="{{route('category.index')}}">All Categories</a></li>
+                                <li><a href="{{route('category.create')}}">Add New Catagory</a></li>
                             </ul>
                         </li>
                         <li>
