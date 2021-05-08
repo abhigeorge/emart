@@ -13,7 +13,14 @@
 <script src="{{ asset('backend/assets/vendor/dropify/js/dropify.min.js')}}"></script>
 <script src="{{ asset('backend/assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
 <script src="{{ asset('backend/assets/vendor/summernote/dist/summernote.js')}}"></script>
+<script src="{{ asset('backend/assets/vendor/switch-button-bootstrap/src/bootstrap-switch-button.js')}}"></script>
 
 
 
 @yield('scripts')
+
+<script>
+    setTimeout(function () {
+        $('#alert').slideUp();
+    },4000);
+</script>

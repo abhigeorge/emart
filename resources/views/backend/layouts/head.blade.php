@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="{{ asset('backend/assets/vendor/dropify/css/dropify.min.css')}}">
 <link rel="stylesheet" href="{{ asset('backend/assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}">
 <link rel="stylesheet" href="{{ asset('backend/assets/vendor/summernote/dist/summernote.css')}}">
+<link rel="stylesheet" href="{{ asset('backend/assets/vendor/switch-button-bootstrap/css/bootstrap-switch-button.css')}}">
 
 <!-- MAIN CSS -->
 <link rel="stylesheet" href="{{ asset('backend/assets/css/main.css')}}">

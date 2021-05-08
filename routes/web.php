@@ -31,4 +31,5 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'], function (){
 // Admin Banner Section
 
     Route::resource('/banner',BannerController::class);
+    Route::post('banner_status',[BannerController::class,'bannerStatus'])->name('banner.status');
 });
