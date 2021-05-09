@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -37,7 +38,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $parent_cats=Category::where('is_parent',1)->orderBy('title','ASC')->get();
+        return view('backend.category.create',compact('parent_cats'));
     }
 
     /**
@@ -48,7 +50,29 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'title'=>'string|required',
+            'summary'=>'string|nullable',
+            'is_parent'=>'sometimes|in:1',
+            'parent_id'=>'nullable|exists:categories,id',
+            'status' =>'nullable|in:active,inactive',
+        ]);
+        $data=$request->all();
+        $data['is_parent']=$request->input('is_parent',0);
+        $slug=Str::slug($request->input('title'));
+        $slug_count=Category::where('slug',$slug)->count();
+        if($slug_count>0){
+            $slug = time().'-'.$slug;
+        }
+        $data['slug']=$slug;
+        //return $data;
+        $status=Category::create($data);
+        if($status){
+            return redirect()->route('category.index')->with('success','Category Successfully created!');
+        }
+        else{
+            return back()->with('error','something went wrong!');
+        }
     }
 
     /**
@@ -70,7 +94,14 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category=Category::find($id);
+        $parent_cats=Category::where('is_parent',1)->orderBy('title','ASC')->get();
+        if($category){
+            return view('backend.category.edit',compact(['category','parent_cats']));
+        }
+        else{
+            return back()->with('error','Category not found');
+        }
     }
 
     /**
@@ -82,7 +113,31 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category=Category::find($id);
+        if($category){
+            $this->validate($request,[
+                'title'=>'string|required',
+                'summary'=>'string|nullable',
+                'is_parent'=>'sometimes|in:1',
+                'parent_id'=>'nullable|exists:categories,id',
+                'status' =>'nullable|in:active,inactive',
+            ]);
+            $data=$request->all();
+            if($request->is_parent==1){
+                $data['parent_id']=null;
+            }
+            $data['is_parent']=$request->input('is_parent',0);
+            $status=$category->fill($data)->save();
+            if($status){
+                return redirect()->route('category.index')->with('success','Category Successfully updated!');
+            }
+            else{
+                return back()->with('error','something went wrong!');
+            }
+        }
+        else{
+            return back()->with('error','Category not found');
+        }
     }
 
     /**
@@ -94,9 +149,13 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category=Category::find($id);
+        $child_cat_id=Category::where('parent_id',$id)->pluck('id');
         if($category){
             $status=$category->delete();
             if($status){
+                if(count($child_cat_id)>0){
+                    Category::shiftChild($child_cat_id);
+                }
                 return redirect()->route('category.index')->with('success','Category successfully deleted');
             }
             else{
