@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
 class CategoryController extends Controller
 {
     /**
@@ -55,10 +54,10 @@ class CategoryController extends Controller
             'summary'=>'string|nullable',
             'is_parent'=>'sometimes|in:1',
             'parent_id'=>'nullable|exists:categories,id',
-            'status' =>'nullable|in:active,inactive',
+            'status'=>'nullable|in:active,inactive',
         ]);
         $data=$request->all();
-        $data['is_parent']=$request->input('is_parent',0);
+        $data['is_parent']=$request->input('is_parent', 0);
         $slug=Str::slug($request->input('title'));
         $slug_count=Category::where('slug',$slug)->count();
         if($slug_count>0){
@@ -120,13 +119,14 @@ class CategoryController extends Controller
                 'summary'=>'string|nullable',
                 'is_parent'=>'sometimes|in:1',
                 'parent_id'=>'nullable|exists:categories,id',
-                'status' =>'nullable|in:active,inactive',
+                'status'=>'nullable|in:active,inactive',
             ]);
+
             $data=$request->all();
             if($request->is_parent==1){
                 $data['parent_id']=null;
             }
-            $data['is_parent']=$request->input('is_parent',0);
+            $data['is_parent']=$request->input('is_parent', 0);
             $status=$category->fill($data)->save();
             if($status){
                 return redirect()->route('category.index')->with('success','Category Successfully updated!');

@@ -54,7 +54,7 @@
                                 <div class="col-lg-12 col-md-12">
                                     <div class="form-group">
                                     <label for="">Is Parent :</label>
-                                        <input id="is_parent" type="checkbox" name="is_parent" value="{{$category->is_parent}}" checked> Yes
+                                        <input id="is_parent" type="checkbox" name="is_parent" value="{{$category->is_parent}}" {{$category->is_parent==1 ? 'checked' : ''}}> Yes
                                     </div>
                                 </div>
 
