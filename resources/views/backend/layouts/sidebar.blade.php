@@ -71,6 +71,13 @@
                             </ul>
                         </li>
                         <li>
+                            <a href="#App" class="has-arrow"><i class="icon-list"></i> <span>Brand Management</span></a>
+                            <ul>
+                                <li><a href="{{route('brand.index')}}">All Brands</a></li>
+                                <li><a href="{{route('brand.create')}}">Add New Brand</a></li>
+                            </ul>
+                        </li>
+                        <li>
                             <a href="#App" class="has-arrow"><i class="icon-present"></i> <span>Products Management</span></a>
                             <ul>
                                 <li><a href="app-inbox.html">Inbox</a></li>
